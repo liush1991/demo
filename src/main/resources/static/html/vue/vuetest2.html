@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: #ccc;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body style="background-color: #ccc;">
+<div id="app">
+    <div>商品名称：<input v-model="name"/></div>
+    <button v-on:click="cut">减一个</button>
+    购买数量{{count}}
+    <button v-on:click="add">加一个</button>
+    <button v-on:click="addCart">加入购物车</button>
+    <div v-for="(item, index) in list" :key="index" :id="index" @click="change">
+        {{item.name}}  x{{item.count}}
+    </div><br><br>
+    <div>商品名:{{product.name}}</div>
+    <input v-model="product.name"><br><br>
+    <div v-on:click="fn1('dd',$event)">测试</div>
+    <input v-on:keyup="fn2('dd',$event)">
+    <input @keyup.enter="fn3">   <!-- 回车执行-->
+</div>
+</body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            name: '',
+            count:0,
+            isMax: false,
+            list: [],
+
+            product:{
+                name:''
+            }
+        },
+        methods: {
+            cut() {
+                this.count = this.count - 1
+                this.isMax = false
+            },
+            add() {
+                this.count = this.count + 1
+            },
+            addCart() {
+                if(this.count==0){
+                    console.log("数量为0不能添加购物车!!!")
+                    return;
+                }
+                for(var obj in this.list){
+                    if(this.list[obj].name==this.name){
+                        console.log("购物车已存在此商品,不能添加!!!");
+                        return;
+                    }
+                }
+                this.list.push({
+                    name: this.name,
+                    count: this.count
+                })
+            },
+            change:function (obj) {
+                this.name= this.list[obj.toElement.getAttribute("id")].name
+                this.count= this.list[obj.toElement.getAttribute("id")].count
+            },
+            fn1:function(o1,event){
+                console.log(o1)
+                console.log(event)
+            },
+            fn2:function(o1,event){
+                console.log(o1)
+                console.log(event)
+            },
+            fn3:function(obj){
+                console.log(obj)
+            }
+        },
+        watch: {
+            count: function(newVal, oldVal) {
+                if(newVal > 10) {
+                    this.isMax = true
+                }
+                if(newVal < 0) {
+                    this.count = 0
+                }
+            },
+            name: function() {
+                this.count = 0
+                this.isMax = false
+            },
+            isMax: function(newVal) {
+                console.log(newVal)
+                if (newVal) {
+                    console.log('注意：您购买的数量较大，请确认是否操作有误')
+                }
+            },
+            list:function() {
+                console.log('购物车数据发生改变')
+            },
+            'product.name':function(newVal,oldVal){
+                console.log(newVal)
+                console.log(oldVal)
+            }
+        }
+    })
+</script>
+</html>

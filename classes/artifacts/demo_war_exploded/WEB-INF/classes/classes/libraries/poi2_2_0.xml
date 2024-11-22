@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="poi2-2.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/poi2-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/ojdbc-6.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

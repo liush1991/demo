@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--<script  src="../js/vue.min.js"></script>-->
+<script type="text/javascript" src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<script type="text/javascript" src="../../js/jquery-3.5.1.min.js"></script>
+<style>
+    .d1{
+        background-color: cyan;
+    }
+    .d2{
+        font-size: 20px;
+    }
+</style>
+<body>
+    <div id="app">
+       {{msg1}}
+        <div v-text="msg2"></div><!--v-text 与 {{}} 相同-->
+        <div v-html="msg3"></div> <!-- v-html 绑可以绑定标签 -->
+        <input type="text" v-bind:value="msg4"><!--  v-bind 给属性绑定值-->
+        <button :disabled="disabled">按钮</button> <!--  v-bind 简写成 :-->
+
+        <ul>
+            <li v-for="item in obj">{{item.id}}<span>{{item.name}}</span></li>
+        </ul>
+
+        <div>
+            <button id="b1" v-on:click="bo=!bo">是否显示下一个按钮      <span v-if="bo==true">显示</span><span v-else>不显示</span></button>
+            <button v-show="bo" v-on:click="f1">测试按钮</button>
+        </div>
+        <div>
+            <button id="b2" v-on:click="bo1=!bo1">是否显示下一个按钮</button>
+            <button v-if="bo1" v-on:click="f2">测试按钮</button>
+        </div>
+
+        <div>{{msg5}}</div>
+        <input v-model="msg5">
+
+        <div v-bind:class="{d1:isbo1,d2:isbo2}" v-bind:style="cssobj">测试</div>
+        <button v-on:click="isbo1=!isbo1;isbo2=!isbo2">背景色</button>
+
+        <div>数量:{{num}}</div>
+        <div>单价:{{pre}}</div>
+        <div>总价{{f3()}}</div>
+        <div>总价{{total}}</div>
+        <div>数量增加了:{{difference1}}</div>
+        <div>单价增加了:{{difference2}}</div>
+        <button @click="addNum">增加数量</button>
+        <button @click="addPre">增加单价</button><br>
+        输入数量:<input v-model="num"><br>
+        输入单价:<input v-model="pre">
+
+        <div>name:{{comName}}</div>
+        <div>firstName:{{firstName}}</div>
+        <div>lastName:{{lastName}}</div>
+        输入姓名:<input v-model="comName">
+        输 入 姓:<input v-model="firstName">
+        输 入 名:<input v-model="lastName">
+        <br><br>
+        <input type="checkbox" v-model="chh" value="dfdsf" id="chd">
+        <label for="chd">{{chh}}</label>
+        <br>
+        <input type="checkbox" v-model="types" id="food" value="食物"><label for="food">食物</label>
+        <input type="checkbox" v-model="types" id="book" value="书"><label for="book">书</label>
+        <input type="checkbox" v-model="types" id="clothes" value="衣服"><label for="clothes">衣服</label>
+        <div>{{types}}</div>
+        <br>
+        下拉选:<select  v-model="selected">
+            <option value="001">客车</option>
+            <option value="002">货车</option>
+        </select>
+        <p>{{selected}}</p>
+    </div>
+</body>
+<script>
+    console.log(Vue)
+    var vm= new Vue({
+        el:"#app",
+        data(){
+            return {
+                msg:"ddddffffffff",
+                msg1:"22222",
+                msg2:"33333",
+                msg3:"<div>您好，我是小慕！</div>",
+                msg4:"4444",
+                msg5:"555",
+                disabled:true,
+                obj:[{id:1,name:"水杯"},{id:2,name:"水瓶"}],
+                bo:true,
+                bo1:false,
+                isbo1:true,
+                isbo2:false,
+                width1:'300px',
+                num:10,
+                pre:100,
+               /* name:'',*/
+                firstName:'',
+                lastName:'',
+                difference1:0,
+                difference2:0,
+                cssobj:{
+                    width:'500px',
+                    height:'50px'
+                },
+                chh:[],
+                types:[],
+                selected:''
+            }
+        },
+        methods:{
+            f1(){
+                console.log("33222")
+            },
+            f2:function () {
+                console.log("4444")
+            },
+            f3(){
+              return this.num*this.pre;
+            },
+            addNum(){
+                this.num=parseInt(this.num)+1;
+            },
+            addPre(){
+                this.pre=parseInt(this.pre)+10;
+            }
+        },
+        computed:{
+            total(){
+                return this.num*this.pre;
+            },
+
+            comName:{
+              get:function(){
+                return (this.firstName+" "+this.lastName).trim();
+              },
+              set:function(newValue){
+                  var names = newValue.split(' ')
+                  this.firstName = names[0]
+                  if(names.length>1){
+                      this.lastName = names[names.length - 1]
+                  }else{
+                      this.lastName='';
+                  }
+
+                }
+            }
+        },
+        watch:{
+            num:function(newV,oldV){
+                this.difference1=newV-oldV;
+                console.log(this.difference1)
+            },
+            pre:function (newV,oldV) {
+                this.difference2=newV-oldV;
+            }
+        }
+
+    })
+</script>
+</html>

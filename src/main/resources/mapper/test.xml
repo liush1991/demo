@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 本映射文件对应GoodsDao接口 -->
+<mapper namespace="test">
+    <select id="ddd" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from goods where name=#{name}
+    </select>
+    <select id="getAll" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from goods
+    </select>
+    <insert id="insertAa01" parameterType="java.util.Map">
+        insert into aa01 (aaa001,aaa002) values(#{aaa001},#{aaa002})
+    </insert>
+    <insert id="insertAa02" parameterType="java.util.Map">
+        insert into aa02 (aaa001,aaa002) values(#{aaa001},#{aaa002})
+    </insert>
+</mapper>
+

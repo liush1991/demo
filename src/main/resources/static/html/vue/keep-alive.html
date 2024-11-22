@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <keep-alive>
+            <component :is="componentV"></component>
+        </keep-alive>
+        <button @click="fnClick('componentA')">组件A</button>
+        <button @click="fnClick('componentB')">组件b</button>
+        <button @click="fnClick('componentC')">组件c</button>
+    </div>
+</body>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<script>
+    Vue.component("componentA",{
+        template:"<div>组件A</div>",
+        created(){
+            console.log("组件A被创建")
+        },
+        deactivated() {
+            console.log('组件A 被移除')
+        }
+    })
+    Vue.component("componentB",{
+        template:"<div>组件B</div>",
+        created(){
+            console.log("组件B被创建")
+        },
+        deactivated() {
+            console.log('组件B 被移除')
+        }
+    })
+    Vue.component("componentC",{
+        template:"<div>组件C</div>",
+        created(){
+            console.log("组件C被创建")
+        },
+        deactivated() {
+            console.log('组件C 被移除')
+        }
+    })
+    var vm= new Vue({
+        el:"#app",
+        data:{
+            componentV:"componentB"
+        },
+        methods:{
+            fnClick:function(value){
+                this.componentV=value;
+            }
+        }
+
+    })
+</script>
+</html>

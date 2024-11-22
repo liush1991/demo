@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="b1" onclick="fnGetGoods()">获取商品信息</button>
+<table id="goodsTable"></table>
+</body>
+<script src="../js/test.js"></script>
+<script>
+
+    $(function () {
+        console.log("sssss");
+
+    });
+    function fnGetGoods(){
+        $.ajax({
+            type: "GET",
+            url: "../getGoodsList.do",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (res) {
+                console.log(res)
+                $.each(res, function (i, v) {
+                    row = "<tr>";
+                    row += "<td>" + v.id + "</td>";
+                    row += "<td>" + v.name + "</td>";
+                    row += "<td>" + v.price + "</td>";
+                    row += "<td>" + v.pic + "</td>";
+                    row += "</tr>";
+                    $("#goodsTable").append(row);
+                });
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+</script>
+</html>

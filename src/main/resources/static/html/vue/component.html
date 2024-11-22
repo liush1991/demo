@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<!--<script src="https://unpkg.com/vue/dist/vue.js"></script>-->
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<body>
+<div id="app">
+    <div>{{name}}{{count}}</div>
+    <input v-model="name">
+    <my-component :name="name"></my-component>
+    <me-component> ddd</me-component>
+    <me-component1><span slot="sl"> ddd</span></me-component1>
+    <test-component></test-component>
+    <test-c></test-c>
+    <parent></parent>
+</div>
+</body>
+<script>
+    Vue.component('MyComponent', {
+        template: '<div>{{name}}</div>',
+        props:['name']
+    })
+    Vue.component('MeComponent', {
+        template: '<div>hello<slot></slot></div>'  /*插槽*/
+    })
+    Vue.component('MeComponent1', {
+        template: '<div>hello<slot name="sl"></slot></div>'  /*具名插槽*/
+    })
+    Vue.component('TestComponent', {
+        template: '<div><div>{{count}}</div><button @click="fnclick">添加</button></div>',
+        data() {
+            return {
+                count: 0
+            }
+        },
+        methods: {
+            fnclick: function () {
+                this.count = this.count + 1;
+            }
+        }
+    })
+    Vue.component('child1', {
+        template: '<div >{{name}} {{ count}} <button @click="add"> 添加1</button></div>',
+        // props:['name'],
+        props: {
+            name: {
+                type: String,
+                default: '默认'
+            },
+            count: {
+                type: Number,
+                default: 18,
+            }
+        },
+        data() {
+            return {
+                id: 'child'
+            }
+        },
+        methods:{
+            add:function(){
+                this.$emit('addc',this.count+1)
+            }
+        }
+    })
+    Vue.component('child2', {
+        template: '<div >{{name}} {{ count}} <button @click="add"> 添加2</button></div>',
+        // props:['name'],
+        props: {
+            name: {
+                type: String,
+                default: '默认'
+            },
+            count: {
+                type: Number,
+                default: 18,
+            }
+        },
+        data() {
+            return {
+                id: 'child'
+            }
+        },
+        methods:{
+            add:function(){
+                this.$emit('addc',this.count+1)
+            }
+        }
+    })
+    Vue.component('parent', {
+        template: '<div><child1 :name="name1" :count="count1" @addc="addp"></child1><br>' +
+            '<child2 :name="name1" :count="count1" @addc="addp"></child2></div>',
+        data() {
+            return {
+                name1: '数据传输!',
+                count1:15,
+            }
+        },
+        methods:{
+            addp:function(count){
+                this.count1=count;
+                this.$emit('addb',this.count1)
+                console.log(this.count1)
+            }
+        }
+
+    })
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            name: 'ww',
+            count:0,
+        },
+        components: {
+            'test-c': {template: '<h2>测试2</h2>'}
+        },
+        methods:{
+            addb:function(count){
+                this.count=count;
+            }
+        }
+
+    })
+
+</script>
+</html>

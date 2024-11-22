@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 本映射文件对应GoodsDao接口 -->
+<mapper namespace="base">
+    <select id="getSeq" parameterType="java.util.Map" statementType="STATEMENT"  resultType="java.util.Map">
+        select ${SEQNAME} as SEQUENCE from dual
+    </select>
+    <select id="getSequences" parameterType="java.util.Map"  statementType="CALLABLE" useCache="false">
+        {call pro_getSequences(#{SEQNAME ,mode=IN,jdbcType=VARCHAR },#{SEQUENCE, mode=OUT, jdbcType=VARCHAR })}
+    </select>
+</mapper>
+

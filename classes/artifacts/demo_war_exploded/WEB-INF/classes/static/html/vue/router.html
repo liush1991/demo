@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+   <div>
+       <router-link to="/one">one</router-link>
+       <router-link :to="{path:'/one'}">one</router-link>
+       <router-link :to="{name:'name1'}">one</router-link>
+       <router-link to="/two">two</router-link>
+       <router-link to="/three">three</router-link>
+   </div>
+    <router-view></router-view>
+
+    <br>
+    <br>
+    <div>
+        <button @click="fnclick('one')">one</button>
+        <button @click="fnclick('two')">two</button>
+        <button @click="fnclick('three1')">three1</button>
+    </div>
+    <router-view name="view1"></router-view>
+</div>
+</body>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<!--<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>-->
+<script src="../../js/vue-router.js"></script>
+<script>
+    const a=Vue.component('MyComponenta',{
+        template:"<div>组件一</div>"
+    })
+    const b=Vue.component('MyComponentb',{
+        template: '<div>组件二</div>'
+    })
+    const c=Vue.component('MyComponentc',{
+        template:"<div>组件三" +
+                    "<div>" +
+                        "<router-link to='/three/four'>four</router-link>" +
+                        "<router-link to='/three/five'> five</router-link>" +
+                    "</div>" +
+                    "<router-view></router-view>" +
+                 "</div>"
+    })
+    const c1=Vue.component('MyComponentc1',{
+        template:"<div>组件三" +
+            "<div>" +
+            "<button @click='fnclick('four')'>four</button>" +
+            "<button @click='fnclick('five')'>five</button>" +
+            "</div>" +
+            "<router-view></router-view>" +
+            "</div>"
+    })
+    const d=Vue.component('MyComponentd',{
+        template:'<div>组件四</div>'
+    })
+    const e=Vue.component('MyComponente',{
+        template:'<div>组件五</div>'
+    })
+    const routes=[
+        {path:'/one',name:'name1',component:a},
+        {path:'/two',component:b},
+        {path:'/three',component:c,children:[
+                {path:'four',component:d},
+                {path:'five',component:e}
+            ]},
+        {path:'/three1',components:{view1:c1},children:[
+                {path:'four',component:d},
+                {path:'five',component:e}
+            ]}
+        ]
+    const router=new VueRouter({
+        routes:routes
+    })
+
+    var vm = new Vue({
+        el: "#app",
+        router:router,
+        data: {},
+        methods: {
+            fnclick:function (name) {
+                console.log(name)
+                this.$router.push(name)
+            }
+        }
+
+    })
+</script>
+</html>

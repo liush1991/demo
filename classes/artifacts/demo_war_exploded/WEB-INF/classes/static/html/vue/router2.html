@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <div>
+        <div>
+            <router-link :to="{name:'name1'}">组件一</router-link>
+            <router-link to="/bbb">组件二</router-link>
+            <router-link to="/ccc">组件三</router-link>
+            <router-link to="/ddd">组件四</router-link>
+            <router-link to="/eee">组件五</router-link>
+            <router-link to="/fff">组件六</router-link>
+            <router-link :to="{name:'name6',params:{name:'fsdggccxx'}}">组件七</router-link>
+        </div>
+        <router-view name="one"></router-view>
+        <br>
+        <router-view name="two"></router-view>
+    </div>
+
+</div>
+</body>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<script src="../../js/vue-router.js"></script>
+<script>
+    const a=Vue.component('MyComponenta',{
+        template:'<div>组件一</div>'
+    })
+    const b=Vue.component('MyComponentb',{
+        template: '<div>组件二</div>'
+    })
+    const c=Vue.component('MyComponentc',{
+        template: '<div>{{$route.params.name}}</div>'
+    })
+    const routes=[
+        {path:'/aaa',name:'name1',components:{one:a}},
+        {path:'/bbb',name:'name2',components:{two:b}},
+        {path:'/ccc',name:'name3',redirect:'/aaa'},
+        {path:'/ddd',name:'name4',redirect: {name:'name2'}},
+        {path:'/eee',name:'name5',redirect: {name:'name3'}},
+        {path:'/fff',redirect:to=>{
+                if(Math.random()>0.5 ){
+                    return '/aaa'
+                }else{
+                    return{
+                        name:'name2'
+                    }
+                }
+            }},
+        {path:'/ggg/:name',name:'name6',components:{two:c}}
+    ]
+    const router=new VueRouter({
+        routes:routes
+    })
+    var vm = new Vue({
+        el: "#app",
+        router:router,
+        data: {},
+        methods: {}
+
+    })
+</script>
+</html>

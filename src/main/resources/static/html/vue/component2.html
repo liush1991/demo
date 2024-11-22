@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app" >
+    <div>{{name}} {{count}}</div>
+    <component-a :name="name" :count="count" @add1="add2"></component-a>
+    <component-b></component-b>
+</div>
+</body>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<script>
+    Vue.component("component-a",{
+        template:'<div>{{name}} {{count}}<button @click="add">添加</button></div>',
+        props:{
+            name:{
+                type:String,
+                default:"测试"
+            },
+            count:{
+                type:Number,
+                default:15
+            }
+        },
+        methods: {
+            add:function () {
+                console.log("eee")
+                this.$emit("add1",this.count+1)
+            }
+        }
+    })
+    Vue.component("component-b",{
+        template: "<component-a :name='name'></component-a>",
+        data(){
+            return {
+                name :"dffssfsd"
+            }
+        }
+    })
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            name:'parent',
+            count:16,
+        },
+        methods: {
+            add2:function (count) {
+                console.log("dddd")
+                this.count=count;
+            }
+        }
+
+    })
+</script>
+</html>
