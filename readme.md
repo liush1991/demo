@@ -16,3 +16,5 @@
     10. JFrame com.example.javaDemo.JFrameDemo  .com.example.test.SwingLoginExample
     11.访问数据库 Oracle  service继承BaseService
                   mysql走dao层
+	12.com.example.demo.webservice.ClientTest调用远程接口
+		com.example.demo.webservice.WebServiceTest 接口
