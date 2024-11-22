@@ -31,7 +31,7 @@ public class TestOrder {
     void testcc() {
         Runtime runtime = Runtime.getRuntime();
         try {
-            runtime.exec("C:\\Users\\ASUS\\AppData\\Local\\SogouExplorer\\SogouExplorer.exe");
+            runtime.exec("C:\\Users\\Lenovo\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe");
         } catch (IOException e) {
             e.printStackTrace();
         }
