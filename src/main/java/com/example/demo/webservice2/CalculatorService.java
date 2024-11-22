@@ -3,7 +3,8 @@ package com.example.demo.webservice2;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
-@WebService
+
+@WebService(targetNamespace = "http://webservice2.dome.example.com")
 public interface CalculatorService {
 
     @WebMethod

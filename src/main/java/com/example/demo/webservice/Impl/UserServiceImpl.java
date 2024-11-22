@@ -2,6 +2,7 @@ package com.example.demo.webservice.Impl;
 
 import com.example.demo.entity.User;
 import com.example.demo.webservice.UserService;
+import org.apache.cxf.feature.Features;
 import org.springframework.stereotype.Component;
 
 import javax.jws.WebService;
@@ -12,6 +13,7 @@ import java.util.Map;
         targetNamespace="http://service.demosxt.sxt.com",//指定你想要的名称空间，通常使用使用包名反转
         endpointInterface="com.example.demo.webservice.UserService")//服务接口全路径, 指定做SEI（Service EndPoint Interface）服务端点接口
 @Component
+@Features(features = "org.apache.cxf.feature.LoggingFeature")//调用接口时输出日志
 public class UserServiceImpl implements UserService {
 
     private Map<String, User> userMap = new HashMap<String, User>();

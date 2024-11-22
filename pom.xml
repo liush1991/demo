@@ -150,23 +150,23 @@
             <version>2.3.4.RELEASE</version>
         </dependency>
             <!-- Apache CXF核心依赖 -->
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-rt-frontend-jaxws</artifactId>
-                <version>3.5.5</version>
-            </dependency>
-            <!-- 用于支持Spring集成（如果项目使用Spring框架的话） -->
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-rt-transports-http</artifactId>
-                <version>3.5.5</version>
-            </dependency>
-            <!-- 用于处理XML相关功能 -->
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-rt-databinding-jaxb</artifactId>
-                <version>3.5.5</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.apache.cxf</groupId>-->
+<!--                <artifactId>cxf-rt-frontend-jaxws</artifactId>-->
+<!--                <version>3.5.5</version>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash; 用于支持Spring集成（如果项目使用Spring框架的话） &ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.cxf</groupId>-->
+<!--                <artifactId>cxf-rt-transports-http</artifactId>-->
+<!--                <version>3.5.5</version>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash; 用于处理XML相关功能 &ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.cxf</groupId>-->
+<!--                <artifactId>cxf-rt-databinding-jaxb</artifactId>-->
+<!--                <version>3.5.5</version>-->
+<!--            </dependency>-->
     </dependencies>
 
     <build>

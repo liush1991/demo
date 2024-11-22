@@ -3,6 +3,8 @@ package com.example.demo.webservice;
 
 import com.example.demo.webservice.Impl.UserServiceImpl;
 import com.example.demo.webservice.Impl.WebServiceImplTest;
+import com.example.demo.webservice2.CalculatorService;
+import com.example.demo.webservice2.Impl.CalculatorServiceImpl;
 import org.apache.cxf.Bus;
 import org.apache.cxf.bus.spring.SpringBus;
 import org.apache.cxf.jaxws.EndpointImpl;
@@ -37,6 +39,11 @@ public class TestConfig {
     public UserService userService(){
         return new UserServiceImpl();
     }
+
+    @Bean
+    public CalculatorService calculatorService(){
+        return new CalculatorServiceImpl();
+    }
     @Bean
     public Endpoint endpoint() {
         EndpointImpl endpoint = new EndpointImpl(springBus(),testService());
@@ -47,6 +54,14 @@ public class TestConfig {
     public Endpoint endpoint2(){
         EndpointImpl endpoint= new EndpointImpl(springBus(),userService());
         endpoint.publish("/userService");
+        return endpoint;
+    }
+
+
+    @Bean
+    public Endpoint calculatorEndpoint() {
+        EndpointImpl endpoint = new EndpointImpl(springBus(), calculatorService());
+        endpoint.publish("/CalculatorService");
         return endpoint;
     }
 }

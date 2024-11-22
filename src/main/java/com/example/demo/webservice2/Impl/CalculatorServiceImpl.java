@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
 
-@WebService(endpointInterface = "com.example.demo.webservice2.CalculatorService")
+@WebService(serviceName = "CalculatorService",
+        targetNamespace = "http://webservice2.demo.example.com",
+        endpointInterface = "com.example.demo.webservice2.CalculatorService")
 @Service
 @Features(features = "org.apache.cxf.feature.LoggingFeature")
 public class CalculatorServiceImpl implements CalculatorService {

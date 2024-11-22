@@ -18,3 +18,4 @@
                   mysql走dao层
 	12.com.example.demo.webservice.ClientTest调用远程接口
 		com.example.demo.webservice.WebServiceTest 接口
+		com.example.demo.webservice.TestConfig   启动接口
