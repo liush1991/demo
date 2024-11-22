@@ -12,6 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * 测试配置
+ * http://localhost:8080/demo/swagger-ui.html
  */
 @Configuration // 告诉Spring容器，这个类是一个配置类
 @EnableSwagger2 // 启用Swagger2功能

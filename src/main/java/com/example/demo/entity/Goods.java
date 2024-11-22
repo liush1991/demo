@@ -1,17 +1,18 @@
-package com.example.demo.entry;
+package com.example.demo.entity;
 
 public class Goods {
-    private long id;
+    private String id;
     private String name;
     private String price;
     private String pic;
     //库存
     private Long num;
-    public long getId() {
+
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

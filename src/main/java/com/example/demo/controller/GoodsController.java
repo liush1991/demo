@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.entry.Goods;
-import com.example.demo.service.GoodsServiceImpl;
+import com.example.demo.entity.Goods;
+import com.example.demo.service.Impl.GoodsServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;

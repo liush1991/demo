@@ -1,6 +1,6 @@
 package com.example.demo.dao;
 
-import com.example.demo.entry.Order;
+import com.example.demo.entity.Order;
 import org.springframework.stereotype.Repository;
 
 @Repository

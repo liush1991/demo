@@ -1,6 +1,6 @@
 package com.example.demo.dao;
 
-import com.example.demo.entry.Goods;
+import com.example.demo.entity.Goods;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

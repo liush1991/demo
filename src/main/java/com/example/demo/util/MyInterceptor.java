@@ -7,7 +7,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
 
 /**
  * 自定义拦截器类
@@ -22,6 +21,15 @@ public class MyInterceptor implements HandlerInterceptor { // 实现HandlerInter
             throws Exception {
        // System.out.println(new Date() + "--preHandle:" + request.getRequestURL());
         logger.info(request.getRequestURL().toString());
+        String [] arr =request.getRequestURL().toString().split("/");
+        String path ;
+        if( "downloadController".equals(arr[arr.length-1])){
+            request.getRequestDispatcher("/downloadController/loadpage.do").forward(request,response);
+            return false;
+        }
+
+        logger.info(request.getRequestURL().toString());
+
         return true;
     }
 

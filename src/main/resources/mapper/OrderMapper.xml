@@ -3,7 +3,7 @@
 <!-- 本映射文件对应OrderDao接口 -->
 <mapper namespace="com.example.demo.dao.OrderDao">
     <!-- 对应OrderDao中的insert方法 -->
-    <insert id="insert" parameterType="com.example.demo.entry.Order">
+    <insert id="insert" parameterType="com.example.demo.entity.Order">
         insert into orders (goods_id,count) values (#{goodsId},#{count})
     </insert>
 </mapper>

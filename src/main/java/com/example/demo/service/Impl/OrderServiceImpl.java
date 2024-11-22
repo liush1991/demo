@@ -1,12 +1,13 @@
-package com.example.demo.service;
+package com.example.demo.service.Impl;
 
 import com.example.demo.dao.GoodsDao;
 import com.example.demo.dao.OrderDao;
-import com.example.demo.entry.Goods;
-import com.example.demo.entry.Order;
+import com.example.demo.entity.Goods;
+import com.example.demo.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 @Service
 public class OrderServiceImpl {
     @Autowired
@@ -29,6 +30,7 @@ public class OrderServiceImpl {
         Long newNum = goods.getNum() - count;
         goods.setNum(newNum);
         goodsDao.update(goods);
+        //  int a=1/0;
         // 生成订单
         Order order = new Order();
         order.setGoodsId(goodsId);

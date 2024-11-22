@@ -11,11 +11,11 @@ import java.io.IOException;
 /**
  * 启动自动执行
  * 启动自动打开浏览器
+ * 在application.properties文件配置参数
  */
 @Component
 public class MyCommandRunner implements CommandLineRunner {
     private static Logger logger = LoggerFactory.getLogger(MyCommandRunner.class);
- //   private org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
     @Value("${spring.web.loginUrl}")
     private String loginUrl;
     @Value("${spring.web.browserUrl}")
@@ -24,6 +24,7 @@ public class MyCommandRunner implements CommandLineRunner {
     private boolean isOpen;
     @Override
     public void run(String... args) throws Exception {
+        logger.info("启动成功....");
         if(isOpen){
             String cmd = browserUrl+" "+loginUrl;
             Runtime runtime= Runtime.getRuntime();
